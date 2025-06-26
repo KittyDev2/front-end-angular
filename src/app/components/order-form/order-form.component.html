@@ -1,0 +1,66 @@
+<div class="order-card">
+  <h1 class="form-title">🍔 Order Manager</h1>
+  <p class="form-subtitle">Create your hamburger order</p>
+
+  <!-- Success/Error Messages -->
+  <app-alert 
+    *ngIf="successMessage && successMessage.trim().length > 0" 
+    type="success" 
+    [message]="successMessage">
+  </app-alert>
+
+  <app-alert 
+    *ngIf="errorMessage && errorMessage.trim().length > 0" 
+    type="error" 
+    [message]="errorMessage">
+  </app-alert>
+
+  <!-- Order Form -->
+  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="form-label" for="clientName">Client Name</label>
+      <input
+        id="clientName"
+        type="text"
+        class="form-input"
+        [class.error]="isFieldInvalid('clientName')"
+        formControlName="clientName"
+        placeholder="Enter client name"
+      />
+      <div *ngIf="isFieldInvalid('clientName')" class="error-message">
+        <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="width: 16px; height: 16px;">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+        </svg>
+        Client name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="hamburguerDescription">Hamburger Description</label>
+      <input
+        id="hamburguerDescription"
+        type="text"
+        class="form-input"
+        [class.error]="isFieldInvalid('hamburguerDescription')"
+        formControlName="hamburguerDescription"
+        placeholder="e.g., Cheddar Bacon Deluxe"
+      />
+      <div *ngIf="isFieldInvalid('hamburguerDescription')" class="error-message">
+        <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="width: 16px; height: 16px;">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+        </svg>
+        Hamburger description is required
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="submit-button"
+      [disabled]="orderForm.invalid || isSubmitting"
+    >
+      <app-loading-spinner *ngIf="isSubmitting"></app-loading-spinner>
+      <span *ngIf="!isSubmitting">Submit Order</span>
+      <span *ngIf="isSubmitting">Sending Order...</span>
+    </button>
+  </form>
+</div>
