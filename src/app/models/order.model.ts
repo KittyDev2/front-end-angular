@@ -1,11 +1,9 @@
 export interface OrderRequest {
-  MessageBody: {
-    cliente_name: string; // Fixed: API expects 'cliente_name', not 'client_name'
-    hamburguer_description: string;
-  };
-  MessageGroupId: string;
+  cliente_name: string;
+  hamburguer_description: string;
 }
 
+// Esta interface não precisa de mudanças, ela representa os dados do formulário.
 export interface OrderData {
   clientName: string;
   hamburguerDescription: string;

@@ -1,11 +1,11 @@
 {
-  "/api/*": {
-    "target": "https://gcy17emvbe.execute-api.us-east-1.amazonaws.com",
+  "/api": {
+    "target": "https://3e75jhdr4g.execute-api.us-east-1.amazonaws.com",
     "secure": true,
     "changeOrigin": true,
     "logLevel": "debug",
     "pathRewrite": {
-      "^/api": "/gateway-dev-stage"
+      "^/api": "/dev-stage"
     }
   }
 }
